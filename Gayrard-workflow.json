@@ -1,0 +1,625 @@
+{
+  "name": "Internship Finder Workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        576,
+        416
+      ],
+      "id": "b9648250-70ac-4869-a733-f4d90c31f33f",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Génère toutes les combinaisons ville × technologie\nconst cities = [\n  {\"city\": \"Berlin\"},\n  {\"city\": \"New York\"},\n  {\"city\": \"Tokyo\"},\n];\n\nconst technologies = [\n  {\"technology\": \"ia\"},\n  {\"technology\": \"devops\"},\n];\n\nconst combinations = cities.flatMap(cityObj => {\n  return technologies.map(techObj => ({\n    city: cityObj.city,\n    technology: techObj.technology,\n  }));\n});\n\nreturn combinations.map(combo => ({ json: combo }));"
+      },
+      "id": "5c95dc01-f89c-42d8-a6a2-7be8a35b5eff",
+      "name": "1. Generate City × Tech Combinations",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        816,
+        416
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const inputData = $input.all();\nconst results = []\n\nfor (const item of inputData) {\n  const city = item.json.city;\n  const technology = item.json.technology;\n  const searchResults = item.json.results || [];\n  \n  for (const result of searchResults.slice(0, 5)) {\n    results.push({\n      city: city,\n      technology: technology,\n      title: result.title || 'N/A',\n      url: result.url || '',\n      content: result.content || '',\n      score: result.score || 0,\n      raw_content: result.raw_content || ''\n    });\n  }\n}\n\nreturn results.map(r => ({ json: r }));"
+      },
+      "id": "1cd55d69-5b88-42e5-b019-5119de978431",
+      "name": "3. Extract Top 5 Results",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1424,
+        256
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "filter1",
+              "leftValue": "={{ $json.content[0].text.score }}",
+              "rightValue": 8,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            },
+            {
+              "id": "5464cc93-c681-493a-8d13-3dacb607fef0",
+              "leftValue": "={{ $json.content[0].text.cost_of_living }}",
+              "rightValue": 2500,
+              "operator": {
+                "type": "number",
+                "operation": "lt"
+              }
+            },
+            {
+              "id": "8f141d07-d852-4ef4-bd47-1c0bab7f9776",
+              "leftValue": "={{ $json.content[0].text.safety }}",
+              "rightValue": 75,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "be91f777-6525-43c3-9dcc-93940f41beaa",
+      "name": "5. Filter by Criteria",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2,
+      "position": [
+        1856,
+        256
+      ],
+      "notes": "Filtre: City score > 40 ET relevance score > 0.3"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst parsedResults = [];\n\nfor (const item of items) {\n  try {\n    // Structure : item.json.output[0].content[0].text\n    const llmResponse = item.json.output[0].content[0].text;\n    \n    // Virer les backticks markdown et les \\n\n    const cleanedResponse = llmResponse\n      .replace(/```json/g, '')\n      .replace(/```/g, '')\n      .replace(/\\\\n/g, '')\n      .trim();\n    \n    // Parser le JSON\n    const extractedInfo = JSON.parse(cleanedResponse);\n    \n    // Résultat propre\n    parsedResults.push({\n      json: {\n        message_id: item.json.output[0].id,\n        status: item.json.output[0].status,\n        company_name: extractedInfo.company_name,\n        position_title: extractedInfo.position_title,\n        salary: extractedInfo.salary,\n        skills: extractedInfo.skills,\n        deadline: extractedInfo.deadline,\n        start_date: extractedInfo.start_date,\n        remote: extractedInfo.remote\n      }\n    });\n    \n  } catch (error) {\n    console.error('Erreur:', error);\n    parsedResults.push({\n      json: {\n        error: 'Parse failed',\n        raw: item.json.output[0].content[0].text\n      }\n    });\n  }\n}\n\nreturn parsedResults;"
+      },
+      "id": "ad988544-803b-4cf5-989e-9ccadba543ed",
+      "name": "Parse Extracted JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2368,
+        352
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const allInternships = $input.first().json.all_internships || [];\nconst csvData = [];\n\nfor (const item of allInternships) {\n  csvData.push({\n    Entreprise: item.company_name || 'Unknown',\n    Poste: item.position_title || 'N/A',\n    Salaire: item.salary || 'Not mentioned',\n    Compétences: Array.isArray(item.skills) ? item.skills.join('; ') : '',\n    Deadline: item.deadline || 'Not specified',\n    Date_début: item.start_date || 'Not specified',\n    Remote: item.remote || 'Unknown',\n    Résumé: item.resume || 'No summary'\n  });\n}\n\nreturn csvData.map(d => ({ json: d }));"
+      },
+      "id": "44ab88e3-7e5c-4d9c-8103-b72a32fdf3cd",
+      "name": "Prepare Data for Export",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2976,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "689728ee-8725-444d-8a02-59f81966a1e2",
+      "name": "8. Export to CSV",
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        3200,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "query": "=Internship for summer 2027 in {{ $json.city }} inin the field of {{ $json.technology }}",
+        "options": {
+          "search_depth": "advanced",
+          "max_results": 2
+        }
+      },
+      "type": "@tavily/n8n-nodes-tavily.tavily",
+      "typeVersion": 1,
+      "position": [
+        976,
+        592
+      ],
+      "id": "abb45f42-fe17-4668-a553-1d9f958d2bab",
+      "name": "Search",
+      "credentials": {
+        "tavilyApi": {
+          "id": "3gRMcXxc09CvtTK9",
+          "name": "Tavily account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "endpointUrl": "http://host.docker.internal:8000/mcp",
+        "tool": {
+          "__rl": true,
+          "value": "find_city_score",
+          "mode": "list",
+          "cachedResultName": "find_city_score"
+        },
+        "parameters": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "city_name": "={{ $json.city }}"
+          },
+          "matchingColumns": [
+            "city_name"
+          ],
+          "schema": [
+            {
+              "id": "city_name",
+              "displayName": "city_name",
+              "defaultMatch": false,
+              "required": true,
+              "display": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClient",
+      "typeVersion": 1,
+      "position": [
+        1616,
+        256
+      ],
+      "id": "a6f000f0-359b-4cd4-92c9-d49c70e17801",
+      "name": "MCP Client"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1216,
+        336
+      ],
+      "id": "d736427a-0498-45d1-9112-f657b75b99eb",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "chatgpt-4o-latest",
+          "mode": "list",
+          "cachedResultName": "CHATGPT-4O-LATEST"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "=Tu es un expert en recrutement. Analyse l'offre de stage ci-dessous et extrais les informations au format JSON strict.\n\nDonnées à extraire :\n- company_name : Nom de l'entreprise\n- position_title : Titre du poste\n- salary : Salaire (ex: \"1200€\", \"Not mentioned\")\n- skills : Liste des compétences (Array de strings)\n- deadline : Date limite (ou \"Not specified\")\n- start_date : Date de début (ou \"Not specified\")\n- remote : \"Yes\", \"No\", \"Hybrid\", \"Unknown\"\n\nIMPORTANT : Réponds UNIQUEMENT avec le json des informations demandées "
+            },
+            {
+              "content": "=Voici le titre de l'offre :  {{ $('3. Extract Top 5 Results').item.json.title }} et l'offre: {{ $('3. Extract Top 5 Results').item.json.content }}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        2032,
+        352
+      ],
+      "id": "d9485c99-b38e-4aca-bea9-c31de4c4b5ef",
+      "name": "Message a model",
+      "credentials": {
+        "openAiApi": {
+          "id": "oPQDNWM9JJe3Vofy",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "chatgpt-4o-latest",
+          "mode": "list",
+          "cachedResultName": "CHATGPT-4O-LATEST"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "=Tu es un expert en recrutement. Analyse l'offre de stage ci-dessous et fais un resumer court de l'offre avec  un paragraphe ecrit \nIMPORTANT : Réponds UNIQUEMENT avec le json des informations demandées "
+            },
+            {
+              "content": "=Voici le titre de l'offre :  {{ $('3. Extract Top 5 Results').item.json.title }} et l'offre: {{ $('3. Extract Top 5 Results').item.json.content }}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        2032,
+        128
+      ],
+      "id": "7bd5a999-7d11-41c1-b9d9-436bc1abd169",
+      "name": "Message a model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "oPQDNWM9JJe3Vofy",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        2560,
+        208
+      ],
+      "id": "d171dd55-7335-47ad-b7e8-4398c4e7d3a4",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst parsedResults = [];\n\nfor (const item of items) {\n  try {\n    const llmResponse = item.json.output[0].content[0].text;\n    \n    const cleanedResponse = llmResponse\n      .replace(/```json/g, '')\n      .replace(/```/g, '')\n      .replace(/\\\\n/g, '')\n      .trim();\n    \n    const extractedInfo = JSON.parse(cleanedResponse);\n    \n    parsedResults.push({\n      json: {\n        resume: extractedInfo.resume\n      }\n    });\n    \n  } catch (error) {\n    parsedResults.push({\n      json: {\n        resume: 'Erreur parsing'\n      }\n    });\n  }\n}\n\nreturn parsedResults;"
+      },
+      "id": "de805c13-95c7-4125-8047-800591ae40af",
+      "name": "Parse Extracted JSON1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2368,
+        144
+      ]
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "all_internships",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        2768,
+        208
+      ],
+      "id": "b3149b38-af56-4bdb-b3e5-6d34036b93ec",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "chatgpt-4o-latest",
+          "mode": "list",
+          "cachedResultName": "CHATGPT-4O-LATEST"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "Tu es un analyste de données spécialisé en recrutement.\n\nGénère un rapport de synthèse professionnel des stages trouvés.\n\nFormat attendu:\n1. Statistiques générales (nombre total, répartition géographique)\n2. Top 3 entreprises qui recrutent le plus\n3. Compétences les plus demandées (avec fréquence)\n4. Analyse des salaires (fourchette, moyenne si disponible)\n5. Tendances remote/hybride/présentiel\n6. Recommandations clés pour les candidats\n\nTon rapport doit être:\n- Factuel et basé uniquement sur les données fournies\n- Maximum 400 mots\n- Structuré avec des sections claires\n- Actionnable pour un chercheur de stage"
+            },
+            {
+              "content": "=Voici les données des stages trouvés :\n\n{{ JSON.stringify($json.all_internships, null, 2) }}\n\nNombre total de stages : {{ $json.all_internships.length }}\n\nGénère le rapport de synthèse."
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        3056,
+        320
+      ],
+      "id": "0fcbdc9b-3045-4d3f-ab7a-d0c4a1c9d07f",
+      "name": "Message a model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "oPQDNWM9JJe3Vofy",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "noreply@pastel-ia.fr",
+        "toEmail": "mateo.gayrard@gmail.com",
+        "subject": "Rapport de Synthèse",
+        "html": "=<html>\n<head>\n  <style>\n    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }\n    .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }\n    .content { background: #f9f9f9; padding: 30px; border-radius: 0 0 10px 10px; }\n    .report { background: white; padding: 25px; border-left: 4px solid #667eea; margin: 20px 0; white-space: pre-wrap; font-size: 14px; line-height: 1.8; }\n    .footer { text-align: center; margin-top: 30px; padding: 20px; color: #666; border-top: 2px solid #eee; }\n  </style>\n</head>\n<body>\n  <div class=\"header\">\n    <h1>🎓 Recherche de Stage Terminée</h1>\n    <p style=\"margin: 0; font-size: 18px;\">Rapport de Synthèse - {{ $now.format('dd MMMM yyyy') }}</p>\n  </div>\n  \n  <div class=\"content\">\n    <div class=\"report\">\n      {{ $('Message a model2').first().json.output[0].content[0].text }}\n    </div>\n    \n    <div class=\"footer\">\n      <p><strong>📄 Le fichier CSV contenant tous les détails est joint à cet email</strong></p>\n      <p>✅ Workflow exécuté avec succès le {{ $now.format('dd/MM/yyyy à HH:mm') }}</p>\n    </div>\n  </div>\n</body>\n</html>",
+        "options": {
+          "attachments": "data"
+        }
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        3712,
+        208
+      ],
+      "id": "967a1230-3eed-4d3e-b50c-af1ef75483aa",
+      "name": "Send email",
+      "webhookId": "18a6e7d2-fefb-44b4-b356-31b1f2de59f0",
+      "credentials": {
+        "smtp": {
+          "id": "Cr9lxzUMSMXx8Ssh",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        3456,
+        176
+      ],
+      "id": "8bd472d5-8ac2-4e96-bc17-7dd1a2101c5e",
+      "name": "Merge2"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "1. Generate City × Tech Combinations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "1. Generate City × Tech Combinations": {
+      "main": [
+        [
+          {
+            "node": "Search",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "3. Extract Top 5 Results": {
+      "main": [
+        [
+          {
+            "node": "MCP Client",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Data for Export": {
+      "main": [
+        [
+          {
+            "node": "8. Export to CSV",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "MCP Client": {
+      "main": [
+        [
+          {
+            "node": "5. Filter by Criteria",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "3. Extract Top 5 Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "5. Filter by Criteria": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Message a model1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Parse Extracted JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Extracted JSON": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Message a model1": {
+      "main": [
+        [
+          {
+            "node": "Parse Extracted JSON1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Extracted JSON1": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "8. Export to CSV": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Prepare Data for Export",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Message a model2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model2": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "Send email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "e83ee75b-53c7-4bcf-b3ba-a0a3f9189379",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "9fcaff6957443193212aff2de431cb66467a4d3627c878623f05ef63b3be23e5"
+  },
+  "id": "T0FCVVMzjHCiNsyCAQrPO",
+  "tags": []
+}
