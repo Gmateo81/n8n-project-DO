@@ -1,0 +1,983 @@
+[
+    {
+        "city": "Lisbon",
+        "country": "Portugal",
+        "score": 9.0,
+        "cost_of_living": 1800,
+        "internet_mbps": 100,
+        "safety": 85,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Berlin",
+        "country": "Germany",
+        "score": 8.5,
+        "cost_of_living": 2200,
+        "internet_mbps": 120,
+        "safety": 82,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Tokyo",
+        "country": "Japan",
+        "score": 9.2,
+        "cost_of_living": 2800,
+        "internet_mbps": 180,
+        "safety": 95,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Bali",
+        "country": "Indonesia",
+        "score": 8.8,
+        "cost_of_living": 1200,
+        "internet_mbps": 50,
+        "safety": 78,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Bangkok",
+        "country": "Thailand",
+        "score": 8.3,
+        "cost_of_living": 1400,
+        "internet_mbps": 90,
+        "safety": 72,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Barcelona",
+        "country": "Spain",
+        "score": 8.7,
+        "cost_of_living": 2100,
+        "internet_mbps": 110,
+        "safety": 80,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "New York",
+        "country": "USA",
+        "score": 7.2,
+        "cost_of_living": 4500,
+        "internet_mbps": 200,
+        "safety": 68,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "London",
+        "country": "UK",
+        "score": 7.8,
+        "cost_of_living": 3800,
+        "internet_mbps": 150,
+        "safety": 75,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "San Francisco",
+        "country": "USA",
+        "score": 7.5,
+        "cost_of_living": 5000,
+        "internet_mbps": 220,
+        "safety": 65,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Porto",
+        "country": "Portugal",
+        "score": 8.9,
+        "cost_of_living": 1600,
+        "internet_mbps": 95,
+        "safety": 87,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Chiang Mai",
+        "country": "Thailand",
+        "score": 8.6,
+        "cost_of_living": 1100,
+        "internet_mbps": 80,
+        "safety": 80,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Mexico City",
+        "country": "Mexico",
+        "score": 8.4,
+        "cost_of_living": 1500,
+        "internet_mbps": 85,
+        "safety": 65,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Prague",
+        "country": "Czech Republic",
+        "score": 8.6,
+        "cost_of_living": 1700,
+        "internet_mbps": 105,
+        "safety": 84,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Amsterdam",
+        "country": "Netherlands",
+        "score": 8.3,
+        "cost_of_living": 3200,
+        "internet_mbps": 160,
+        "safety": 88,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Budapest",
+        "country": "Hungary",
+        "score": 8.5,
+        "cost_of_living": 1500,
+        "internet_mbps": 110,
+        "safety": 81,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Singapore",
+        "country": "Singapore",
+        "score": 8.7,
+        "cost_of_living": 3500,
+        "internet_mbps": 200,
+        "safety": 96,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Seoul",
+        "country": "South Korea",
+        "score": 8.8,
+        "cost_of_living": 2400,
+        "internet_mbps": 220,
+        "safety": 90,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Taipei",
+        "country": "Taiwan",
+        "score": 8.7,
+        "cost_of_living": 1900,
+        "internet_mbps": 170,
+        "safety": 92,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Melbourne",
+        "country": "Australia",
+        "score": 8.2,
+        "cost_of_living": 3300,
+        "internet_mbps": 130,
+        "safety": 85,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Sydney",
+        "country": "Australia",
+        "score": 8.0,
+        "cost_of_living": 3600,
+        "internet_mbps": 140,
+        "safety": 84,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Vienna",
+        "country": "Austria",
+        "score": 8.4,
+        "cost_of_living": 2300,
+        "internet_mbps": 115,
+        "safety": 90,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Copenhagen",
+        "country": "Denmark",
+        "score": 8.1,
+        "cost_of_living": 3400,
+        "internet_mbps": 145,
+        "safety": 91,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Stockholm",
+        "country": "Sweden",
+        "score": 8.0,
+        "cost_of_living": 2900,
+        "internet_mbps": 135,
+        "safety": 89,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Warsaw",
+        "country": "Poland",
+        "score": 8.3,
+        "cost_of_living": 1600,
+        "internet_mbps": 100,
+        "safety": 83,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Krakow",
+        "country": "Poland",
+        "score": 8.5,
+        "cost_of_living": 1400,
+        "internet_mbps": 95,
+        "safety": 85,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Tallinn",
+        "country": "Estonia",
+        "score": 8.4,
+        "cost_of_living": 1800,
+        "internet_mbps": 125,
+        "safety": 86,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Riga",
+        "country": "Latvia",
+        "score": 8.2,
+        "cost_of_living": 1600,
+        "internet_mbps": 110,
+        "safety": 82,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Vilnius",
+        "country": "Lithuania",
+        "score": 8.3,
+        "cost_of_living": 1550,
+        "internet_mbps": 115,
+        "safety": 83,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Dublin",
+        "country": "Ireland",
+        "score": 7.9,
+        "cost_of_living": 3100,
+        "internet_mbps": 125,
+        "safety": 87,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Edinburgh",
+        "country": "UK",
+        "score": 8.1,
+        "cost_of_living": 2700,
+        "internet_mbps": 130,
+        "safety": 86,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Valencia",
+        "country": "Spain",
+        "score": 8.8,
+        "cost_of_living": 1800,
+        "internet_mbps": 105,
+        "safety": 82,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Madrid",
+        "country": "Spain",
+        "score": 8.4,
+        "cost_of_living": 2000,
+        "internet_mbps": 115,
+        "safety": 79,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Seville",
+        "country": "Spain",
+        "score": 8.6,
+        "cost_of_living": 1700,
+        "internet_mbps": 100,
+        "safety": 81,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Rome",
+        "country": "Italy",
+        "score": 7.8,
+        "cost_of_living": 2200,
+        "internet_mbps": 90,
+        "safety": 74,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Milan",
+        "country": "Italy",
+        "score": 7.9,
+        "cost_of_living": 2400,
+        "internet_mbps": 95,
+        "safety": 76,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Florence",
+        "country": "Italy",
+        "score": 8.2,
+        "cost_of_living": 2100,
+        "internet_mbps": 85,
+        "safety": 78,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Paris",
+        "country": "France",
+        "score": 7.6,
+        "cost_of_living": 3200,
+        "internet_mbps": 120,
+        "safety": 73,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Lyon",
+        "country": "France",
+        "score": 8.0,
+        "cost_of_living": 2300,
+        "internet_mbps": 110,
+        "safety": 80,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Nice",
+        "country": "France",
+        "score": 8.1,
+        "cost_of_living": 2500,
+        "internet_mbps": 105,
+        "safety": 77,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Athens",
+        "country": "Greece",
+        "score": 8.0,
+        "cost_of_living": 1600,
+        "internet_mbps": 85,
+        "safety": 75,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Istanbul",
+        "country": "Turkey",
+        "score": 7.8,
+        "cost_of_living": 1300,
+        "internet_mbps": 80,
+        "safety": 70,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Antalya",
+        "country": "Turkey",
+        "score": 8.1,
+        "cost_of_living": 1200,
+        "internet_mbps": 75,
+        "safety": 76,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Dubai",
+        "country": "UAE",
+        "score": 7.9,
+        "cost_of_living": 3000,
+        "internet_mbps": 150,
+        "safety": 90,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Abu Dhabi",
+        "country": "UAE",
+        "score": 7.7,
+        "cost_of_living": 2900,
+        "internet_mbps": 145,
+        "safety": 92,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Tel Aviv",
+        "country": "Israel",
+        "score": 7.8,
+        "cost_of_living": 3300,
+        "internet_mbps": 140,
+        "safety": 72,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Tbilisi",
+        "country": "Georgia",
+        "score": 8.5,
+        "cost_of_living": 1200,
+        "internet_mbps": 95,
+        "safety": 79,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Batumi",
+        "country": "Georgia",
+        "score": 8.3,
+        "cost_of_living": 1100,
+        "internet_mbps": 85,
+        "safety": 80,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Yerevan",
+        "country": "Armenia",
+        "score": 8.2,
+        "cost_of_living": 1000,
+        "internet_mbps": 90,
+        "safety": 81,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Baku",
+        "country": "Azerbaijan",
+        "score": 7.5,
+        "cost_of_living": 1300,
+        "internet_mbps": 85,
+        "safety": 75,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Ho Chi Minh City",
+        "country": "Vietnam",
+        "score": 8.4,
+        "cost_of_living": 1100,
+        "internet_mbps": 70,
+        "safety": 77,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Hanoi",
+        "country": "Vietnam",
+        "score": 8.3,
+        "cost_of_living": 1000,
+        "internet_mbps": 65,
+        "safety": 78,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Da Nang",
+        "country": "Vietnam",
+        "score": 8.6,
+        "cost_of_living": 950,
+        "internet_mbps": 68,
+        "safety": 82,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Kuala Lumpur",
+        "country": "Malaysia",
+        "score": 8.2,
+        "cost_of_living": 1300,
+        "internet_mbps": 90,
+        "safety": 79,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Penang",
+        "country": "Malaysia",
+        "score": 8.4,
+        "cost_of_living": 1150,
+        "internet_mbps": 85,
+        "safety": 81,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Manila",
+        "country": "Philippines",
+        "score": 7.6,
+        "cost_of_living": 1200,
+        "internet_mbps": 55,
+        "safety": 65,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Cebu",
+        "country": "Philippines",
+        "score": 7.9,
+        "cost_of_living": 1050,
+        "internet_mbps": 60,
+        "safety": 70,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Jakarta",
+        "country": "Indonesia",
+        "score": 7.4,
+        "cost_of_living": 1300,
+        "internet_mbps": 65,
+        "safety": 68,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Medellin",
+        "country": "Colombia",
+        "score": 8.5,
+        "cost_of_living": 1200,
+        "internet_mbps": 75,
+        "safety": 70,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Bogota",
+        "country": "Colombia",
+        "score": 8.1,
+        "cost_of_living": 1300,
+        "internet_mbps": 80,
+        "safety": 67,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Buenos Aires",
+        "country": "Argentina",
+        "score": 8.3,
+        "cost_of_living": 1100,
+        "internet_mbps": 85,
+        "safety": 69,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Lima",
+        "country": "Peru",
+        "score": 7.9,
+        "cost_of_living": 1200,
+        "internet_mbps": 70,
+        "safety": 66,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Santiago",
+        "country": "Chile",
+        "score": 8.0,
+        "cost_of_living": 1500,
+        "internet_mbps": 90,
+        "safety": 75,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "São Paulo",
+        "country": "Brazil",
+        "score": 7.6,
+        "cost_of_living": 1400,
+        "internet_mbps": 80,
+        "safety": 63,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Rio de Janeiro",
+        "country": "Brazil",
+        "score": 7.7,
+        "cost_of_living": 1450,
+        "internet_mbps": 75,
+        "safety": 60,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Florianopolis",
+        "country": "Brazil",
+        "score": 8.2,
+        "cost_of_living": 1350,
+        "internet_mbps": 78,
+        "safety": 72,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Playa del Carmen",
+        "country": "Mexico",
+        "score": 8.3,
+        "cost_of_living": 1600,
+        "internet_mbps": 70,
+        "safety": 71,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Tulum",
+        "country": "Mexico",
+        "score": 8.1,
+        "cost_of_living": 1800,
+        "internet_mbps": 65,
+        "safety": 73,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Cancun",
+        "country": "Mexico",
+        "score": 7.8,
+        "cost_of_living": 1700,
+        "internet_mbps": 75,
+        "safety": 70,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Guadalajara",
+        "country": "Mexico",
+        "score": 8.2,
+        "cost_of_living": 1400,
+        "internet_mbps": 80,
+        "safety": 69,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Austin",
+        "country": "USA",
+        "score": 7.8,
+        "cost_of_living": 3200,
+        "internet_mbps": 180,
+        "safety": 72,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Miami",
+        "country": "USA",
+        "score": 7.6,
+        "cost_of_living": 3500,
+        "internet_mbps": 170,
+        "safety": 68,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Los Angeles",
+        "country": "USA",
+        "score": 7.3,
+        "cost_of_living": 4200,
+        "internet_mbps": 190,
+        "safety": 66,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Seattle",
+        "country": "USA",
+        "score": 7.7,
+        "cost_of_living": 3800,
+        "internet_mbps": 185,
+        "safety": 70,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Denver",
+        "country": "USA",
+        "score": 7.9,
+        "cost_of_living": 3000,
+        "internet_mbps": 175,
+        "safety": 74,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Portland",
+        "country": "USA",
+        "score": 7.8,
+        "cost_of_living": 2900,
+        "internet_mbps": 165,
+        "safety": 71,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Chicago",
+        "country": "USA",
+        "score": 7.4,
+        "cost_of_living": 3100,
+        "internet_mbps": 160,
+        "safety": 67,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Boston",
+        "country": "USA",
+        "score": 7.5,
+        "cost_of_living": 3900,
+        "internet_mbps": 175,
+        "safety": 73,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Toronto",
+        "country": "Canada",
+        "score": 7.8,
+        "cost_of_living": 2800,
+        "internet_mbps": 150,
+        "safety": 82,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Vancouver",
+        "country": "Canada",
+        "score": 7.9,
+        "cost_of_living": 3000,
+        "internet_mbps": 155,
+        "safety": 84,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Montreal",
+        "country": "Canada",
+        "score": 8.0,
+        "cost_of_living": 2400,
+        "internet_mbps": 145,
+        "safety": 85,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Wellington",
+        "country": "New Zealand",
+        "score": 8.1,
+        "cost_of_living": 2700,
+        "internet_mbps": 120,
+        "safety": 88,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Auckland",
+        "country": "New Zealand",
+        "score": 7.9,
+        "cost_of_living": 2900,
+        "internet_mbps": 125,
+        "safety": 86,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Cape Town",
+        "country": "South Africa",
+        "score": 8.2,
+        "cost_of_living": 1400,
+        "internet_mbps": 70,
+        "safety": 64,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Johannesburg",
+        "country": "South Africa",
+        "score": 7.5,
+        "cost_of_living": 1500,
+        "internet_mbps": 75,
+        "safety": 58,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Nairobi",
+        "country": "Kenya",
+        "score": 7.6,
+        "cost_of_living": 1300,
+        "internet_mbps": 65,
+        "safety": 62,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Marrakech",
+        "country": "Morocco",
+        "score": 8.0,
+        "cost_of_living": 1100,
+        "internet_mbps": 60,
+        "safety": 76,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Casablanca",
+        "country": "Morocco",
+        "score": 7.7,
+        "cost_of_living": 1200,
+        "internet_mbps": 65,
+        "safety": 74,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Cairo",
+        "country": "Egypt",
+        "score": 7.3,
+        "cost_of_living": 900,
+        "internet_mbps": 55,
+        "safety": 68,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Colombo",
+        "country": "Sri Lanka",
+        "score": 7.8,
+        "cost_of_living": 1000,
+        "internet_mbps": 70,
+        "safety": 73,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Mumbai",
+        "country": "India",
+        "score": 7.2,
+        "cost_of_living": 1100,
+        "internet_mbps": 75,
+        "safety": 65,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Bangalore",
+        "country": "India",
+        "score": 7.6,
+        "cost_of_living": 1050,
+        "internet_mbps": 80,
+        "safety": 70,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Goa",
+        "country": "India",
+        "score": 8.0,
+        "cost_of_living": 950,
+        "internet_mbps": 65,
+        "safety": 75,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Delhi",
+        "country": "India",
+        "score": 7.1,
+        "cost_of_living": 1000,
+        "internet_mbps": 70,
+        "safety": 63,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Kathmandu",
+        "country": "Nepal",
+        "score": 7.7,
+        "cost_of_living": 850,
+        "internet_mbps": 55,
+        "safety": 72,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Pokhara",
+        "country": "Nepal",
+        "score": 7.9,
+        "cost_of_living": 800,
+        "internet_mbps": 50,
+        "safety": 78,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Zagreb",
+        "country": "Croatia",
+        "score": 8.3,
+        "cost_of_living": 1700,
+        "internet_mbps": 100,
+        "safety": 83,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Split",
+        "country": "Croatia",
+        "score": 8.4,
+        "cost_of_living": 1600,
+        "internet_mbps": 95,
+        "safety": 85,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Dubrovnik",
+        "country": "Croatia",
+        "score": 8.2,
+        "cost_of_living": 1800,
+        "internet_mbps": 90,
+        "safety": 84,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Sofia",
+        "country": "Bulgaria",
+        "score": 8.4,
+        "cost_of_living": 1300,
+        "internet_mbps": 110,
+        "safety": 80,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Bucharest",
+        "country": "Romania",
+        "score": 8.2,
+        "cost_of_living": 1400,
+        "internet_mbps": 120,
+        "safety": 78,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Belgrade",
+        "country": "Serbia",
+        "score": 8.3,
+        "cost_of_living": 1250,
+        "internet_mbps": 95,
+        "safety": 77,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Sarajevo",
+        "country": "Bosnia",
+        "score": 7.9,
+        "cost_of_living": 1100,
+        "internet_mbps": 85,
+        "safety": 76,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Tirana",
+        "country": "Albania",
+        "score": 8.1,
+        "cost_of_living": 1050,
+        "internet_mbps": 90,
+        "safety": 79,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Podgorica",
+        "country": "Montenegro",
+        "score": 8.0,
+        "cost_of_living": 1200,
+        "internet_mbps": 85,
+        "safety": 80,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Kotor",
+        "country": "Montenegro",
+        "score": 8.2,
+        "cost_of_living": 1300,
+        "internet_mbps": 80,
+        "safety": 82,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Skopje",
+        "country": "North Macedonia",
+        "score": 7.8,
+        "cost_of_living": 1000,
+        "internet_mbps": 90,
+        "safety": 75,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Ljubljana",
+        "country": "Slovenia",
+        "score": 8.5,
+        "cost_of_living": 1900,
+        "internet_mbps": 105,
+        "safety": 88,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Bratislava",
+        "country": "Slovakia",
+        "score": 8.2,
+        "cost_of_living": 1600,
+        "internet_mbps": 100,
+        "safety": 84,
+        "source": "Nomad List 2024"
+    },
+    {
+        "city": "Brno",
+        "country": "Czech Republic",
+        "score": 8.4,
+        "cost_of_living": 1550,
+        "internet_mbps": 100,
+        "safety": 86,
+        "source": "Nomad List 2024"
+    }
+]
